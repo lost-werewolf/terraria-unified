@@ -1,0 +1,41 @@
+--- src/TerrariaNetCore/Terraria/GameContent/UI/Elements/UICharacterListItem.cs
++++ src/Unified/Terraria/GameContent/UI/Elements/UICharacterListItem.cs
+@@ -12,7 +_,7 @@
+ 
+ namespace Terraria.GameContent.UI.Elements;
+ 
+-public class UICharacterListItem : UIPanel
++public partial class UICharacterListItem : UIPanel
+ {
+ 	private PlayerFileData _data;
+ 	private Asset<Texture2D> _dividerTexture;
+@@ -104,7 +_,21 @@
+ 		uIImageButton5.OnMouseOut += DeleteMouseOut;
+ 		_deleteButton = uIImageButton5;
+ 		Append(uIImageButton5);
++
++		// Character Template Button
++		UIImageButton uIImageButton6 = new UIImageButton(Main.Assets.Request<Texture2D>("Images/UI/CharCreation/Copy"));
++		uIImageButton6.VAlign = 1f;
++		uIImageButton6.Left.Set(num, 0f);
++		uIImageButton6.OnMouseOver += CopyPlayerTemplateMouseOver;
++		uIImageButton6.OnMouseOut += ButtonMouseOut;
++		if (_data.Player.loadStatus == StatusID.Ok)
++			uIImageButton6.OnLeftClick += CopyPlayerTemplateButtonClick;
++
++		Append(uIImageButton6);
++		num += 24f;
++		/*
+ 		num += 4f;
++		*/
+ 		_buttonLabel = new UIText("");
+ 		_buttonLabel.VAlign = 1f;
+ 		_buttonLabel.Left.Set(num, 0f);
+@@ -120,6 +_,7 @@
+ 		uIImageButton2.SetSnapPoint("Favorite", orderInList);
+ 		uIImageButton4.SetSnapPoint("Rename", orderInList);
+ 		uIImageButton5.SetSnapPoint("Delete", orderInList);
++		uIImageButton6.SetSnapPoint("Copy Template", orderInList);
+ 	}
+ 
+ 	private void RenameMouseOver(UIMouseEvent evt, UIElement listeningElement)

@@ -1,0 +1,32 @@
+--- src/TerrariaNetCore/Terraria/GameContent/UI/States/UICharacterSelect.cs
++++ src/Unified/Terraria/GameContent/UI/States/UICharacterSelect.cs
+@@ -226,7 +_,10 @@
+ 			}
+ 		}
+ 
++		/*
+ 		int num4 = 5;
++		*/
++		int num4 = 6;
+ 		SnapPoint[,] array = new SnapPoint[_playerList.Count, num4];
+ 		foreach (SnapPoint item in snapPoints.Where((SnapPoint a) => a.Name == "Play")) {
+ 			array[item.Id, 0] = item;
+@@ -244,8 +_,18 @@
+ 			array[item4.Id, 3] = item4;
+ 		}
+ 
++		/*
+ 		foreach (SnapPoint item5 in snapPoints.Where((SnapPoint a) => a.Name == "Delete")) {
+ 			array[item5.Id, 4] = item5;
++		}
++		*/
++
++		foreach (SnapPoint item5 in snapPoints.Where((SnapPoint a) => a.Name == "Copy Template")) {
++			array[item5.Id, 4] = item5;
++		}
++
++		foreach (SnapPoint item5 in snapPoints.Where((SnapPoint a) => a.Name == "Delete")) {
++			array[item5.Id, 5] = item5;
+ 		}
+ 
+ 		num2 = num + 2;
